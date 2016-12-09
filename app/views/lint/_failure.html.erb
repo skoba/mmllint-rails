@@ -1,6 +1,19 @@
-<h2>Failed!</h2>
+<div class="alert alert-danger" role="alert"><h2>Failed!</h2>
 
-エラーが発生しました：<br/>
+エラーが発生しました：</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>line</th>
+      <th>message</th>
+    </tr>
+  </thead>
+  <tbody>
 <% @lint.errors.each do |error| %>
-<%= error.message %><br/>
+<tr>
+  <td><%= error.line %></td>
+  <td><%= error.message %></td>
+</tr>
 <% end %>
+  </tbody>
+</table>
