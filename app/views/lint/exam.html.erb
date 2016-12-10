@@ -2,7 +2,7 @@
 
 <%= form_tag '/lint', method: :post do %>
 <%= label_tag(:lint, "MMLインスタンスを入力してください:") %><br/>
-<%= text_area_tag(:mml,'', size: '70x20') %><br/>
+<%= text_area_tag(:mml,'', size: '70x20', class: 'form-control', placeholder: 'Copy and paste MML instance here') %><br/>
 <%= submit_tag "送信", class: 'btn btn-primary' %>
 <% end %>
 

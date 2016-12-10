@@ -5,6 +5,7 @@
   <thead>
     <tr>
       <th>line</th>
+      <th>code</th>
       <th>message</th>
     </tr>
   </thead>
@@ -12,6 +13,7 @@
 <% @lint.errors.each do |error| %>
 <tr>
   <td><%= error.line %></td>
+  <td><%= error.file %></td>
   <td><%= error.message %></td>
 </tr>
 <% end %>
