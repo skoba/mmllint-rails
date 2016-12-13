@@ -6,14 +6,13 @@
   <thead>
     <tr>
       <th>line</th>
-      <th>code</th>
       <th>message</th>
     </tr>
   </thead>
   <tbody>
 <tr>
-  <td></td>
-  <td><%= @syntax_errors.to_s %></td>
+  <td><%= @lint.syntax_errors.line %></td>
+  <td><%= @lint.syntax_errors.message %></td>
 </tr>
   </tbody>
 </table>
