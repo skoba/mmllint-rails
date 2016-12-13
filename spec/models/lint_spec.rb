@@ -29,5 +29,17 @@ RSpec.describe Lint, type: :model do
     it 'should describe failure' do
       expect(lint.errors).not_to be_empty
     end
+
+    context 'mal-formed XML' do
+      before { lint.mml = MALFORMED_XML }
+
+      it 'should return false' do
+        expect(lint).not_to be_well_formed
+      end
+
+      it 'should not be valid' do
+        expect(lint).not_to be_valid
+      end
+    end
   end
 end

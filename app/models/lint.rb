@@ -9,7 +9,7 @@ class Lint
   end
 
   def valid?
-    mml_schema.valid? @mml
+    self.well_formed? && (mml_schema.valid? @mml)
   end
 
   def mml_schema
@@ -17,11 +17,26 @@ class Lint
   end
 
   def mml=(mml)
-    @mml = Nokogiri::XML(mml)
+    begin
+      @mml = Nokogiri::XML(mml) {|config| config.strict }
+    rescue Nokogiri::XML::SyntaxError => e
+      @syntax_errors = e
+    end
+  end
+
+  def well_formed?
+    @syntax_errors.nil? || @syntax_errors.none?
+  end
+
+  def valid_to_schema?
+    errors.nil?
   end
 
   def errors
-    mml_schema.validate @mml
+    mml_schema.validate(@mml) if @mml
+  end
+
+  def syntax_errors
+    @syntax_errors
   end
 end
-

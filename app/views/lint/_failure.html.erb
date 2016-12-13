@@ -1,6 +1,23 @@
 <div class="alert alert-danger" role="alert"><h2>Failed!</h2>
 
 エラーが発生しました：</div>
+<% unless @lint.well_formed? %>
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>line</th>
+      <th>code</th>
+      <th>message</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+  <td></td>
+  <td><%= @syntax_errors.to_s %></td>
+</tr>
+  </tbody>
+</table>
+<% else %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -18,3 +35,4 @@
 <% end %>
   </tbody>
 </table>
+<% end %>
